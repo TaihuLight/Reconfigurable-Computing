@@ -73,8 +73,6 @@ void SMblock_Mult(int si,int sj,int sk,int subm,int subn,int subp) {
 				//if(k==0){//与k的循环无关，只k==0时执行一次即可
 				//	rawCDot[si*S + i][sj * T + j] = rawA[si*S + i][sj * T + j]* rawB[si*S + i][sj * T + j];//子矩阵的点积
 				//}
-				//转置矩阵的乘法：C=A'*B
-				//rawCAOB[sj * T + j][sk * S + k] += rawA[si*S + i][sj * T + j]* rawB[si*S + i][sk * S + k];
 				//转置矩阵的乘法：C=A*B'
 				rawCABO[si * S + i][sk * S + k] += rawA[si*S + i][sj * T + j]* rawB[sk*S + k][sj * T + j];
 				//printf("  乘积值C=%f",rawC[si*S + i][sk * S + k]);
@@ -104,7 +102,6 @@ void Mult_blk(data_type *A, data_type *B, data_type *C) {
 	int count = 0; //循环计数
 	for (i = 0; i < AC_M; i++) {
 		for (j = 0; j < AR_N; j++) {
-			////////////////////////////////
 			int mblk = S, nblk = T, pblk = S; //默认当前参与运算的两个子矩阵块的大小，必须每次循环重新赋初值
 			//计算当前子块的大小
 			if ((i == AC_M - 1)) {
