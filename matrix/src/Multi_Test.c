@@ -7,8 +7,8 @@
 #include "Matrix_SM.h"
 
 //函数声明
-void VtoMat(data_type *Vr,data_type *Mat,int row,int col);
-void CheckResult(data_type * targ_result, data_type * comp_result, int m, int n);
+void VtoMat(data_type *Vr,data_type *Mat,unsigned short int row,unsigned short int col);
+void CheckResult(data_type * targ_result, data_type * comp_result, unsigned short int m, unsigned short int n);
 
 //读取测试数据文件中的矩阵
 data_type rA[] = {
@@ -35,8 +35,8 @@ data_type rustCABO[]  = {
 
 //将从文件中读取的矩阵值赋给参与矩阵运算的矩阵
 
-void VtoMat(data_type *Vr,data_type *Mat,int row,int col){
-	unsigned int i,j;
+void VtoMat(data_type *Vr,data_type *Mat,unsigned short int row,unsigned short int col){
+	unsigned short int i,j;
     for(i = 0; i <row ; i++){
         for(j = 0; j <col ; j++){
             Mat[i * col + j]=Vr[i * col + j];
@@ -60,8 +60,8 @@ int main(void) {
 	return 0;
 }
 
-void CheckResult(data_type * targ_result, data_type * comp_result, int m, int n) {
-	unsigned int i, j, count = 0;
+void CheckResult(data_type * targ_result, data_type * comp_result, unsigned short int m, unsigned short int n) {
+	unsigned short int i, j, count = 0;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			if(fabs(targ_result[i*n+j]-comp_result[i*n+j])>1.9){
