@@ -110,13 +110,13 @@ enum special_operations_t {
 	FP_SUB_OP,
 	FP_MINMAX_OP,
 	FP_MOV_OP,
-	INT_ADD32_OP,
+	//INT_ADD32_OP,
 	INT_ADD_OP,
-	INT_SUB32_OP,
+	//INT_SUB32_OP,
 	INT_SUB_OP,
-	INT_MINMAX32_OP,
+	//INT_MINMAX32_OP,
 	INT_MINMAX_OP,
-	INT_MOV32_OP,
+	//INT_MOV32_OP,
 	INT_MOV_OP,
 };
 typedef enum special_operations_t special_ops; // Required to identify for the power model

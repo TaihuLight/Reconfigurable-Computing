@@ -556,29 +556,28 @@ void ptx_instruction::set_mul_div_or_other_archop(){
 				break;
 				//****Ìí¼Ó***
 				case ADD_OP: case ADDP_OP: case ADDC_OP:  //1,2,3
-				if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
-					sp_op = INT_ADD32_OP;
-				else
+			//	if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
+			//		sp_op = INT_ADD32_OP;
+			//	else
 					sp_op = INT_ADD_OP;
 				break;
 				case SUB_OP: case SUBC_OP:
-				if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
-					sp_op = INT_SUB32_OP;
-				else
+			//	if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
+			//		sp_op = INT_SUB32_OP;
+			//	else
 					sp_op = INT_SUB_OP;
 				break;
 			case MIN_OP:
 			case MAX_OP:
-				if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
-					sp_op = INT_MINMAX32_OP;
-				else
+			//	if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
+			//		sp_op = INT_MINMAX32_OP;
+			//	else
 					sp_op = INT_MINMAX_OP;
 				break;
 			case MOV_OP:  //36
-				sp_op = FP_MOV_OP;
-				if (get_type() == U32_TYPE || get_type() == S32_TYPE|| get_type() == B32_TYPE)
-					sp_op = INT_MOV32_OP;
-				else
+			//	if (get_type() == U32_TYPE || get_type() == S32_TYPE|| get_type() == B32_TYPE)
+			//		sp_op = INT_MOV32_OP;
+			//	else
 					sp_op = INT_MOV_OP;
 				break;
 				//***ÐÂÔö***
