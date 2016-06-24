@@ -2128,10 +2128,10 @@ void shader_core_ctx::incexecstat(warp_inst_t *&inst)
 		inctex_stat(inst->active_count(),1);
 	*/
 	if(inst->mem_op==TEX){
-		inctex_stat(inst->active_count(),1);
+		inctex_stat(inst->active_count(),1);//原V=1
 		ins_op_counter[34]++;
 	}else if(inst->mem_op==NOT_TEX){
-		//inctex_stat(inst->active_count(),0);
+		//inctex_stat(inst->active_count(),0);//新增
 		ins_op_counter[35]++;
 	}
 
@@ -2147,99 +2147,99 @@ void shader_core_ctx::incexecstat(warp_inst_t *&inst)
 	switch(inst->sp_op){
 	//*******新增指令的统计，延迟值参考cuda-sim/cuda-sim.cc文件中的void ptx_opcocde_latency_options (option_parser_t opp)方法*****
 	case INT_ADD32_OP:
-		inctrans_stat(inst->active_count(), 2); //2
+		inctrans_stat(inst->active_count(), 0); //新增2
 		ins_op_counter[1]++;
 		break;
 	case INT_ADD_OP:
-		inctrans_stat(inst->active_count(), 4); //4
+		inctrans_stat(inst->active_count(), 0); //新增4
 		ins_op_counter[2]++;
 		break;
 	case INT_SUB32_OP:
-		inctrans_stat(inst->active_count(), 2); //2
+		inctrans_stat(inst->active_count(), 0); //新增2
 		ins_op_counter[3]++;
 		break;
 	case INT_SUB_OP:
-		inctrans_stat(inst->active_count(), 4); //4
+		inctrans_stat(inst->active_count(), 0); //新增4
 		ins_op_counter[4]++;
 		break;
 	case INT_MUL_OP:
-		incimul_stat(inst->active_count(),7.2); //7.2
+		incimul_stat(inst->active_count(),7.2); //原值=7.2
 		ins_op_counter[5]++;
 		break;
 	case INT_MUL24_OP:
-		incimul24_stat(inst->active_count(),4.2); //4.2
+		incimul24_stat(inst->active_count(),4.2); //原值=4.2
 		ins_op_counter[6]++;
 		break;
 	case INT_MUL32_OP:
-		incimul32_stat(inst->active_count(),4); //4
+		incimul32_stat(inst->active_count(),4); //原值=4
 		ins_op_counter[7]++;
 		break;
 	case INT_DIV_OP:
-		incidiv_stat(inst->active_count(),40); //40
+		incidiv_stat(inst->active_count(),40); //原值=40
 		ins_op_counter[8]++;
 		break;
 	case INT_MOV32_OP:
-		inctrans_stat(inst->active_count(), 2); //2
+		inctrans_stat(inst->active_count(), 0); //新增2
 		ins_op_counter[9]++;
 		break;
 	case INT_MOV_OP:
-		inctrans_stat(inst->active_count(), 4); //35
+		inctrans_stat(inst->active_count(), 0); //新增35
 		ins_op_counter[10]++;
 		break;
 	case INT_MINMAX32_OP:
-		inctrans_stat(inst->active_count(), 7); //7
+		inctrans_stat(inst->active_count(), 0); //新增7
 		ins_op_counter[11]++;
 		break;
 	case INT_MINMAX_OP:
-		inctrans_stat(inst->active_count(), 14); //14
+		inctrans_stat(inst->active_count(), 0); //新增14
 		ins_op_counter[12]++;
 		break;
 	case INT__OP:
-		incialu_stat(inst->active_count(),25); //25
+		incialu_stat(inst->active_count(),25); //原值=25
 		ins_op_counter[13]++;  //指令INT__OP计数
 		break;
 	case FP_ADD_OP://浮点加法指令
-		inctrans_stat(inst->active_count(), 4); //2
+		inctrans_stat(inst->active_count(), 0); //新增2
 		ins_op_counter[14]++;
 		break;
 	case FP_SUB_OP://浮点减法指令
-		inctrans_stat(inst->active_count(), 4); //2
+		inctrans_stat(inst->active_count(), 0); //新增2
 		ins_op_counter[15]++;
 		break;
 	case FP_MUL_OP://浮点乘法指令
-		incfpmul_stat(inst->active_count(),1.8); //1.8
+		incfpmul_stat(inst->active_count(),1.8); //原值=1.8
 		ins_op_counter[16]++;
 		break;
 	case FP_DIV_OP://浮点除法指令
-		incfpdiv_stat(inst->active_count(),48);//48
+		incfpdiv_stat(inst->active_count(),48);//原值=48
 		ins_op_counter[17]++;
 		break;
 	case FP_MOV_OP://浮点传送指令
-		inctrans_stat(inst->active_count(), 4); //3
+		inctrans_stat(inst->active_count(), 0); //新增3
 		ins_op_counter[18]++;
 		break;
 	case FP_MINMAX_OP://浮点最大值和最小值指令
-		inctrans_stat(inst->active_count(), 13); //13
+		inctrans_stat(inst->active_count(), 0); //新增13
 		ins_op_counter[19]++;
 		break;
 	case FP_SQRT_OP:
-		inctrans_stat(inst->active_count(),25); //25
+		inctrans_stat(inst->active_count(),25); //原值=25
 		ins_op_counter[20]++;
 		break;
 	case FP_LG_OP:
-		inctrans_stat(inst->active_count(),35); //35
+		inctrans_stat(inst->active_count(),35); //原值=35
 		ins_op_counter[21]++;
 		break;
 	case FP_SINCOS_OP:
-		inctrans_stat(inst->active_count(),12); //12
+		inctrans_stat(inst->active_count(),12); //原值=12
 		ins_op_counter[22]++;
 		break;
 	case FP_EXP_OP:
-		inctrans_stat(inst->active_count(),35); //35
+		inctrans_stat(inst->active_count(),35); //原值=35
 		ins_op_counter[23]++;
 		break;
 	case FP__OP:
-		incfpalu_stat(inst->active_count(),1); //1
+		incfpalu_stat(inst->active_count(),1); //原值=1
 		ins_op_counter[24]++;
 	break;
 	//*******新增指令的统计*****
@@ -2263,31 +2263,31 @@ void shader_core_ctx::countOtherOP(warp_inst_t *&inst){
 	//内存操作指令
 	switch (inst->op) {
 	case LOAD_OP:  //memory related instructions
-		incialu_stat(inst->active_count(), 1); //1
+		incialu_stat(inst->active_count(), 1); //新增=1
 		ins_op_counter[25]++;
 		break;
 	case STORE_OP: //memory related instructions
-		incialu_stat(inst->active_count(), 1); //1
+		incialu_stat(inst->active_count(), 1); //新增=1
 		ins_op_counter[26]++;
 		break;
 	case BRANCH_OP:
-		incialu_stat(inst->active_count(), 4); //4
+		incialu_stat(inst->active_count(), 4); //新增=4
 		ins_op_counter[27]++;
 		break;
 	case BARRIER_OP: //
-		incialu_stat(inst->active_count(), 1); //1
+		incialu_stat(inst->active_count(), 1); //新增=1
 		ins_op_counter[28]++;
 		break;
 	case MEMORY_BARRIER_OP:  //memory related instructions
-		incialu_stat(inst->active_count(), 1); //1
+		incialu_stat(inst->active_count(), 1); //新增=1
 		ins_op_counter[29]++;
 		break;
 	case CALL_OPS:
-		incialu_stat(inst->active_count(), 3); //3
+		incialu_stat(inst->active_count(), 1); //新增=3
 		ins_op_counter[30]++;
 		break;
 	case RET_OPS:
-		incialu_stat(inst->active_count(), 1); //1
+		incialu_stat(inst->active_count(), 1); //新增=1
 		ins_op_counter[31]++;
 		break;
 	default://默认op=NO_OP;参见abstract_hardware_model.h文件第707-711行

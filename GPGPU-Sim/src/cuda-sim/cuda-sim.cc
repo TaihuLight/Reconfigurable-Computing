@@ -488,7 +488,7 @@ void ptx_instruction::set_mul_div_or_other_archop(){
     sp_op=OTHER_OP;//默认的sp_op指令类型
     //指令类型分类
 	//测试get_opcode()函数的输出值
-	printf("打印输出函数get_opcode()的返回值=%d\n", get_opcode());
+	//printf("打印输出函数get_opcode()的返回值=%d\n", get_opcode());
 	//测试get_opcode()函数的输出值
 	//printf("打印输出函数get_type()的返回值=%d\n", get_type());
 	if((m_opcode != MEMBAR_OP) && (m_opcode != SSY_OP) && (m_opcode != BRA_OP) && (m_opcode != BAR_OP) && (m_opcode != EXIT_OP) && (m_opcode != NOP_OP) && (m_opcode != RETP_OP) && (m_opcode != RET_OP) && (m_opcode != CALLP_OP) && (m_opcode != CALL_OP)){
@@ -544,19 +544,19 @@ void ptx_instruction::set_mul_div_or_other_archop(){
 			//操作数为INT的指令
 			switch(get_opcode()){
 				case MUL24_OP:
-				case MAD24_OP:
+				case MAD24_OP: //30
 				    sp_op=INT_MUL24_OP;
 				break;
-				case MUL_OP:
-				case MAD_OP:
+				case MUL_OP:  //38
+				case MAD_OP: //31
 					if(get_type()==U32_TYPE || get_type()==S32_TYPE || get_type()==B32_TYPE)
 					    sp_op=INT_MUL32_OP;
 					else
 					    sp_op=INT_MUL_OP;
 				break;
 				//****添加***
-				case ADD_OP: case ADDP_OP: case ADDC_OP:
-				if (get_type() == U32_TYPE || get_type() == S32_TYPE|| get_type() == B32_TYPE)
+				case ADD_OP: case ADDP_OP: case ADDC_OP:  //1,2,3
+				if (get_type() == U32_TYPE || get_type() == S32_TYPE || get_type() == B32_TYPE)
 					sp_op = INT_ADD32_OP;
 				else
 					sp_op = INT_ADD_OP;
@@ -574,7 +574,7 @@ void ptx_instruction::set_mul_div_or_other_archop(){
 				else
 					sp_op = INT_MINMAX_OP;
 				break;
-			case MOV_OP:
+			case MOV_OP:  //36
 				sp_op = FP_MOV_OP;
 				if (get_type() == U32_TYPE || get_type() == S32_TYPE|| get_type() == B32_TYPE)
 					sp_op = INT_MOV32_OP;
@@ -582,7 +582,7 @@ void ptx_instruction::set_mul_div_or_other_archop(){
 					sp_op = INT_MOV_OP;
 				break;
 				//***新增***
-				case DIV_OP:
+				case DIV_OP:  //22
 				    sp_op=INT_DIV_OP;
 				break;
 				default://默认情况
