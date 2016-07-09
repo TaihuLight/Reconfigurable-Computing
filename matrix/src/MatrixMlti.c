@@ -47,7 +47,8 @@ void SMblock_Mult(data_type rawA[rawm][rawn], data_type rawB[rawm][rawn],
 	}
 }
 
-//分块后的子块矩阵点积C[m][n]=A[m][n].*B[m][n]
+//分块后的子块矩阵点积C[m][n]=A[m][n].*B[m][n]，已将该函数写入了SMblock_Mult，避免综合时遇到的内联函数自动转换问题
+/*
 void SMblock_MultDot(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type rawCABot[rawm][rawn],int si, int sj, int subm, int subn) {
 	unsigned short int i, j;
 	for (i = 0; i < subm; i++) { //行号
@@ -56,6 +57,7 @@ void SMblock_MultDot(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_
 		}
 	}
 }
+*/
 
 //分块矩阵运算：调用乘法实现分块矩阵3种矩阵乘法和矩阵点积运算
 void Mult_blk(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type rawD[rawn][rawp],data_type rawCAD[rawm][rawp],
