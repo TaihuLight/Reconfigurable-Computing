@@ -26,7 +26,10 @@ void MatixPros(unsigned short int blkp[6]){
 }
 
 //分块后的子块矩阵乘法
-void SMblock_Mult(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type rawD[rawn][rawp],data_type rawCAD[rawm][rawp],data_type rawCABO[rawm][rawm],int si,int sj,int sk,int subm,int subn,int subp) {
+void SMblock_Mult(data_type rawA[rawm][rawn], data_type rawB[rawm][rawn],
+		data_type rawD[rawn][rawp], data_type rawCAD[rawm][rawp],
+		data_type rawCABO[rawm][rawm], int si, int sj, int sk, int subm,
+		int subn, int subp,int flag,data_type rawCABot[rawm][rawn]) {
 	unsigned short int i, j, k;
 	for (i = 0; i < subm; i++) { //行号
 		for (j = 0; j < subn; j++) { //列号
@@ -35,6 +38,10 @@ void SMblock_Mult(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_typ
 				rawCAD[si*S + i][sk * S + k] += rawA[si*S + i][sj * T + j]* rawD[sj*T + j][sk * S + k];//子矩阵乘法
 				//转置矩阵的乘法：C[m][p]=A*B'=A[m][n]*B'[p][n]
 				rawCABO[si * S + i][sk * S + k] += rawA[si*S + i][sj * T + j]* rawB[sk*S + k][sj * T + j];
+			}
+			//
+			if(flag==0){
+				rawCABot[si * S + i][sj * T + j] = rawA[si * S + i][sj * T + j]* rawB[si * S + i][sj * T + j]; //子矩阵的点积
 			}
 		}
 	}
@@ -65,14 +72,16 @@ void Mult_blk(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type ra
 			if (j == blkb[1] - 1) {//AR_N
 				nblk = blkb[4]; //AR_last
 			}
+			unsigned int flag=0;
 			for (k = 0; k < blkb[2]; k++) { //BR_P
 				unsigned short  int pblk = S;
 				if (k == blkb[2] - 1) {//BR_P
 					pblk = blkb[5];  //BR_last
 				}
-				SMblock_Mult(&rawA[0],&rawB[0],&rawD[0],&rawCAD[0],&rawCABO[0],i, j, k, mblk, nblk, pblk);
+				SMblock_Mult(&rawA[0],&rawB[0],&rawD[0],&rawCAD[0],&rawCABO[0],i, j, k, mblk, nblk, pblk,flag,&rawCABot[0]);
+				flag=1;  //仅执行一次
 			}
-			SMblock_MultDot(&rawA[0],&rawB[0],&rawCABot[0],i, j, mblk, nblk);
+			//SMblock_MultDot(&rawA[0],&rawB[0],&rawCABot[0],i, j, mblk, nblk);
 		}
 	}
 }
