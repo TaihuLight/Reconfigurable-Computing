@@ -14,10 +14,10 @@ void CheckResult(data_type * targ_result, data_type * comp_result, unsigned shor
 data_type rA[] = {
 #include "DataSet_Test\Mat_A.h"
 		};
-data_type mB[] = {
+data_type rB[] = {
 #include "DataSet_Test\Mat_B.h"
 		};
-data_type mD[] = {
+data_type rD[] = {
 #include "DataSet_Test\Mat_D.h"
 		};
 data_type rustC[]  = {
@@ -34,12 +34,11 @@ data_type rustCABO[]  = {
 		};
 
 //将从文件中读取的矩阵值赋给参与矩阵运算的矩阵
-
-void VtoMat(data_type *Vr,data_type *Mat,unsigned short int row,unsigned short int col){
+void VtoMat(data_type *Vr,data_type *Mat,unsigned short int Mrow,unsigned short int Mcol){
 	unsigned short int i,j;
-    for(i = 0; i <row ; i++){
-        for(j = 0; j <col ; j++){
-            Mat[i * col + j]=Vr[i * col + j];
+    for(i = 0; i <Mrow ; i++){
+        for(j = 0; j <Mcol ; j++){
+            Mat[i * Mcol + j]=Vr[i * Mcol + j];
         }
     }
 }
@@ -47,12 +46,12 @@ void VtoMat(data_type *Vr,data_type *Mat,unsigned short int row,unsigned short i
 int main(void) {
     //读取矩阵元素
 	VtoMat(&rA[0], rawA[0], rawm, rawn);
-	VtoMat(&mB[0], rawB[0], rawm, rawn);
-	VtoMat(&mD[0], rawD[0], rawn, rawp);
+	VtoMat(&rB[0], rawB[0], rawm, rawn);
+	VtoMat(&rD[0], rawD[0], rawn, rawp);
 
-	MatixPros(); //矩阵分块处理
-	Mult_blk();  //分块矩阵运算
-	Mult_blkCAOB(*rawA, *rawB, *rawCAOB);  //分块矩阵的乘法 C=A'*B
+	//顶层函数
+	Matix_Blkmulti(rawA[0],rawB[0],rawD[0]);
+
 	CheckResult(&rustC[0], rawC[0], rawm, rawp);
 	CheckResult(&rustCDot[0], rawCDot[0], rawm, rawn);
 	CheckResult(&rustCABO[0], rawCABO[0], rawm, rawm);
