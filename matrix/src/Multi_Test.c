@@ -6,6 +6,11 @@
 #include <stdlib.h>
 #include "Matrix_SM.h"
 
+//顶层函数放在测试代码中进行声明
+void Matix_Blkmulti(data_type RA[rawm][rawn], data_type RB[rawm][rawn],
+		data_type RD[rawn][rawp], data_type rawCAD[rawm][rawp],
+		data_type rawCABot[rawm][rawn], data_type rawCAOB[rawn][rawn],
+		data_type rawCABO[rawm][rawm]);
 //函数声明
 void VtoMat(data_type *Vr,data_type *Mat,unsigned short int row,unsigned short int col);
 void CheckResult(data_type * targ_result, data_type * comp_result, unsigned short int m, unsigned short int n);

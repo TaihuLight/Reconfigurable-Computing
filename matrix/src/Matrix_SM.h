@@ -15,9 +15,4 @@ typedef float data_type;//定义为16位浮点数
 #define S 8  //块矩阵的行
 #define T 12  //块矩阵的列
 
-//函数声明
-void Matix_Blkmulti(data_type RA[rawm][rawn], data_type RB[rawm][rawn],
-		data_type RD[rawn][rawp], data_type rawCAD[rawm][rawp],
-		data_type rawCABot[rawm][rawn], data_type rawCAOB[rawn][rawn],
-		data_type rawCABO[rawm][rawm]);//顶层函数
 #endif /* MATRIX_SM_H_ */

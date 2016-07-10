@@ -28,8 +28,8 @@ void MatixPros(unsigned short int blkp[6]){
 //分块后的子块矩阵乘法
 void SMblock_Mult(data_type rawA[rawm][rawn], data_type rawB[rawm][rawn],
 		data_type rawD[rawn][rawp], data_type rawCAD[rawm][rawp],
-		data_type rawCABO[rawm][rawm], int si, int sj, int sk, int subm,
-		int subn, int subp,int flag,data_type rawCABot[rawm][rawn]) {
+		data_type rawCABO[rawm][rawm], unsigned short int si, unsigned short int sj, unsigned short int sk, unsigned short int subm,
+		unsigned short int subn, unsigned short int subp,unsigned short int flag,data_type rawCABot[rawm][rawn]) {
 	unsigned short int i, j, k;
 	for (i = 0; i < subm; i++) { //行号
 		for (j = 0; j < subn; j++) { //列号
@@ -89,7 +89,7 @@ void Mult_blk(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type ra
 }
 
 //2.1 子矩阵乘法 C=A'*B
-void SMblock_MultCAOB(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type rawCAOB[rawn][rawn],int si,int sj,int sk,int subm,int subn,int subp) {
+void SMblock_MultCAOB(data_type rawA[rawm][rawn],data_type rawB[rawm][rawn],data_type rawCAOB[rawn][rawn],unsigned short int si,unsigned short int sj,unsigned short int sk,unsigned short int subm,unsigned short int subn,unsigned short int subp) {
 	unsigned short int i, j, k;
 	for (j = 0; j < subn; j++){ //列号
 	   for (i = 0; i < subm; i++) { //行号
