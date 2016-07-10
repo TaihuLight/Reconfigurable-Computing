@@ -4,13 +4,11 @@
 #include <string.h>
 #include "Matrix_SM.h"
 
-
-
+//非并行的代码，建议放在测试代码中
 //矩阵分块处理：计算分块后子矩阵块的个数
 void MatixPros(unsigned short int blkp[6]){
 	//分块后子矩阵的个数h*l,A矩阵分为S*T的子矩阵，B矩阵分为T*S的子矩阵
 	//unsigned short int表示无符号整数，仅占用2个字节，unsigned int和int均占4个字节
-
 //AC_M
 	if (rawm % S == 0) {
 		blkp[0] = rawm / S;

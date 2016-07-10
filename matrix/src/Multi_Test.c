@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "Matrix_SM.h"
 
-//顶层函数放在测试代码中进行声明
+//顶层函数放在测试代码中进行声明，而不是头文件中，这样可以将矩阵元素设置为半精度浮点数 half-precision floating-point format (16-bit)
 void Matix_Blkmulti(data_type RA[rawm][rawn], data_type RB[rawm][rawn],
 		data_type RD[rawn][rawp], data_type rawCAD[rawm][rawp],
 		data_type rawCABot[rawm][rawn], data_type rawCAOB[rawn][rawn],
@@ -76,7 +76,7 @@ void CheckResult(data_type * targ_result, data_type * comp_result, unsigned shor
 	unsigned short int i, j, count = 0;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
-			if(fabs(targ_result[i*n+j]-comp_result[i*n+j])>1.9){
+			if(fabs(targ_result[i*n+j]-comp_result[i*n+j])>1.9f){
 			count++;
 			}
 		}
